@@ -6,12 +6,12 @@
     <title>Selamat Datang!</title>
 </head>
 <body>
-    <h1>Hello, World!</h1>
-    <p>Selamat datang di toko BookSales!</p>
+    <h1>Genre Buku</h1>
 
-    @foreach ($genres as $item)
+    @foreach ($genres as $genre)
         <ul>
-            <li>{{ $item['name'] }}</li>
+            <li>{{ $genre['name'] }}</li>
+            <li>{{ $genre['description'] }}</li>
         </ul>
     @endforeach
 </body>

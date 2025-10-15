@@ -8,8 +8,7 @@ class BookController extends Controller
 {
     public function index()
     {
-        $data = new Book();
-        $books = $data->getBooks();
+        $books = Book::all();
 
         return view('books', ['books' => $books]);
     }

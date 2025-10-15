@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use Illuminate\Http\Request;
+
+use function Pest\Laravel\json;
 
 class BookController extends Controller
 {
@@ -10,6 +13,10 @@ class BookController extends Controller
     {
         $books = Book::all();
 
-        return view('books', ['books' => $books]);
+        return response()->json([
+            "success" => true,
+            "message" => "Get all books",
+            "data" => $books
+        ], 200);
     }
 }

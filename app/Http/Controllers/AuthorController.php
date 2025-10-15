@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use Illuminate\Http\Request;
+
+use function Pest\Laravel\json;
 
 class AuthorController extends Controller
 {
@@ -10,6 +13,10 @@ class AuthorController extends Controller
     {
         $authors = Author::all();
 
-        return view('authors', ['authors' => $authors]);
+        return response()->json([
+            "success" => true,
+            "message" => "Get all authors",
+            "data" => $authors
+        ], 200);
     }
 }

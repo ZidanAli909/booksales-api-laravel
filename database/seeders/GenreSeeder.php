@@ -26,12 +26,16 @@ class GenreSeeder extends Seeder
             'description' => 'Genre yang mengeksplorasi imajinasi dan dunia yang tidak nyata.'
         ]);
         Genre::create([
-            'name' => 'Drama',
-            'description' => 'Genre yang menekankan pada cerita yang membangkitkan emosi.'
+            'name' => 'Comedy',
+            'description' => 'Genre yang menekankan pada humor dan hiburan.'
         ]);
         Genre::create([
-            'name' => 'Horror',
-            'description' => 'Genre yang menekankan pada kecemasan dan ketakutan.'
+            'name' => 'Educational',
+            'description' => 'Genre yang menekankan pada ilmu pengetahuan dan pendidikan.'
+        ]);
+        Genre::create([
+            'name' => 'Drama',
+            'description' => 'Genre yang menekankan pada kehidupan dan perasaan.'
         ]);
     }
 }

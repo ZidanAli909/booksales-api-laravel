@@ -15,8 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             GenreSeeder::class,
-            BookSeeder::class,
             AuthorSeeder::class,
+            BookSeeder::class
         ]);
         
         // User::factory(10)->create();

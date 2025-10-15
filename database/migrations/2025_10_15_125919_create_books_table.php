@@ -17,9 +17,9 @@ return new class extends Migration
             $table->text('description');
             $table->decimal('price', 8, 2);
             $table->integer('stock');
-            // $table->foreignId('genre_id')->constrained();
-            // $table->foreignId('author_id')->constrained();
-            // $table->string('cover_photo');
+            $table->string('cover_photo');
+            $table->foreignId('genre_id')->constrained('genres');
+            $table->foreignId('author_id')->constrained('authors');
             $table->timestamps();
         });
     }

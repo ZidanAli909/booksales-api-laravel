@@ -14,28 +14,24 @@ class GenreSeeder extends Seeder
     public function run(): void
     {
         Genre::create([
-            'name' => 'Action',
-            'description' => 'Genre yang menekankan pada adegan aksi, pertempuran, dan kecepatan.'
+            'name' => 'Fiksi',
+            'description' => 'Genre yang menekankan pada cerita fiksi dan fantasi.'
         ]);
         Genre::create([
-            'name' => 'Romance',
-            'description' => 'Genre yang menekankan pada hubungan romantis dan cinta.'
+            'name' => 'Edukasi',
+            'description' => 'Genre yang menekankan pada ilmu pengetahuan dan pendidikan.'
         ]);
         Genre::create([
-            'name' => 'Fantasy',
-            'description' => 'Genre yang mengeksplorasi imajinasi dan dunia yang tidak nyata.'
+            'name' => 'Self-help',
+            'description' => 'Genre yang menekankan pada motivasi, kekuatan diri, dan peningkatan keterampilan.'
         ]);
         Genre::create([
             'name' => 'Comedy',
             'description' => 'Genre yang menekankan pada humor dan hiburan.'
         ]);
         Genre::create([
-            'name' => 'Educational',
-            'description' => 'Genre yang menekankan pada ilmu pengetahuan dan pendidikan.'
-        ]);
-        Genre::create([
-            'name' => 'Drama',
-            'description' => 'Genre yang menekankan pada kehidupan dan perasaan.'
+            'name' => 'Filosofis',
+            'description' => 'Genre yang menekankan pada ilmu pengetahuan dan filosofi.'
         ]);
     }
 }

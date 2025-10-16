@@ -12,6 +12,7 @@
     @foreach ($authors as $item)
         <ul>
             <li>{{ $item['name'] }}</li>
+            <li>{{ $item['bio'] }}</li>
         </ul>
     @endforeach
 </body>

@@ -9,23 +9,28 @@ class Genre extends Model
     private $genres = [
         [
             'id' => 1,
-            'name' => 'Fiction',
+            'name' => 'Fiksi',
+            'description' => 'Genre yang menekankan pada cerita fiksi dan fantasi.'
         ],
         [
             'id' => 2,
-            'name' => 'Educational',
+            'name' => 'Edukasi',
+            'description' => 'Genre yang menekankan pada ilmu pengetahuan dan pendidikan.'
         ],
         [
             'id' => 3,
-            'name' => 'Non-fiction',
+            'name' => 'Self-help',
+            'description' => 'Genre yang menekankan pada motivasi, kekuatan diri, dan peningkatan keterampilan.'
         ],
         [
             'id' => 4,
-            'name' => 'Komedi',
+            'name' => 'Comedy',
+            'description' => 'Genre yang menekankan pada humor dan hiburan.'
         ],
         [
             'id' => 5,
-            'name' => 'Thriller',
+            'name' => 'Filosofis',
+            'description' => 'Genre yang menekankan pada ilmu pengetahuan dan filosofi.'
         ],
     ];
 

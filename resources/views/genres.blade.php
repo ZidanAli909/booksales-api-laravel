@@ -12,6 +12,7 @@
     @foreach ($genres as $item)
         <ul>
             <li>{{ $item['name'] }}</li>
+            <li>{{ $item['description'] }}</li>
         </ul>
     @endforeach
 </body>

@@ -11,7 +11,10 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::get('/books', [BookController::class, 'index']);
+Route::get('/books/{id}', [BookController::class, 'show']);
 Route::post('/books', [BookController::class, 'store']);
+Route::post('/books/{id}', [BookController::class, 'update']); // Tidak bisa PUT, why?
+Route::delete('/books/{id}', [BookController::class, 'destroy']);
 
 Route::get('/authors', [AuthorController::class, 'index']);
 Route::post('/authors', [AuthorController::class, 'store']);

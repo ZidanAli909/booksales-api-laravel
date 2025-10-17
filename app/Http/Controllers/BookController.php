@@ -18,18 +18,36 @@ class BookController extends Controller
         if ($books->isEmpty()) {
             return response()->json([
                 "success" => false,
-                "message" => "No books found",
+                "message" => "Books is empty.",
             ], 404);
         }
 
         return response()->json([
             "success" => true,
-            "message" => "Get all books",
+            "message" => "Get all books.",
             "data" => $books
         ], 200);
     }
 
+    public function show(string $id) {
+        $book = Book::find($id);
+
+        if (!$book) {
+            return response()->json([
+                "success" => false,
+                "message" => "The targeted book not found.",
+            ], 404);
+        }
+
+        return response()->json([
+            "success" => true,
+            "message" => "Get the targeted book.",
+            "data" => $book
+        ], 200);
+    }
+
     public function store(Request $request) {
+        // Validator
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:128',
             'description' => 'required|string',
@@ -43,10 +61,11 @@ class BookController extends Controller
         if ($validator->fails()) {
             return response()->json([
                 "success" => false,
-                "message" => "Error in validation",
+                "message" => "Error in form/request validation!",
                 "errors" => $validator->errors()
             ], 400);
         }
+        // End-of Validator
 
         $image = $request->file('cover_photo');
         $image->store('books', 'public');
@@ -63,31 +82,22 @@ class BookController extends Controller
 
         return response()->json([
             "success" => true,
-            "message" => "Book created successfully",
+            "message" => "A book created successfully!",
             'data' => $newbook
         ], 201);
-    }
-
-    public function show(string $id) {
-        $book = Book::find($id);
-
-        if (!$book) {
-            return response()->json([
-                "success" => false,
-                "message" => "Book not found",
-            ], 404);
-        }
-
-        return response()->json([
-            "success" => true,
-            "message" => "Get detail resource",
-            "data" => $book
-        ], 200);
     }
 
     public function update(string $id, Request $request) {
         $book = Book::find($id);
 
+        if (!$book) {
+            return response()->json([
+                "success" => false,
+                "message" => "The targeted book not found.",
+            ], 404);
+        }
+
+        // Validator
         $validator = Validator::make($request->all(), [
             'title' => 'required|string|max:128',
             'description' => 'required|string',
@@ -98,20 +108,14 @@ class BookController extends Controller
             'author_id' => 'required|exists:authors,id',
         ]);
 
-        if (!$book) {
-            return response()->json([
-                "success" => false,
-                "message" => "Book not found",
-            ], 404);
-        }
-
         if ($validator->fails()) {
             return response()->json([
                 "success" => false,
-                "message" => "Error in validation",
+                "message" => "Error in form/request validation!",
                 "errors" => $validator->errors()
             ], 422);
         }
+        // End-of Validator
 
         $newbook = [
             'title' => $request->title,
@@ -122,6 +126,7 @@ class BookController extends Controller
             'author_id' => $request->author_id
         ];
 
+        // Cover photo replacement (if exist)
         if ($request->hasFile('cover_photo')) {
             $image = $request->file('cover_photo');
             $image->store('books', 'public');
@@ -137,7 +142,7 @@ class BookController extends Controller
 
         return response()->json([
             "success" => true,
-            "message" => "Book updated successfully",
+            "message" => "A book updated successfully!",
             "data" => $book
         ], 200);
     }
@@ -148,10 +153,11 @@ class BookController extends Controller
         if (!$book) {
             return response()->json([
                 "success" => false,
-                "message" => "Book not found",
+                "message" => "The targeted book not found.",
             ], 404);
         }
 
+        // Delete cover_photo file from storage
         if ($book->cover_photo) {
             Storage::disk('public')->delete('books/' . $book->cover_photo);
         }
@@ -160,7 +166,7 @@ class BookController extends Controller
 
         return response()->json([
             "success" => true,
-            "message" => "Book deleted successfully",
+            "message" => "A book deleted successfully!",
         ], 200);
     }
 }

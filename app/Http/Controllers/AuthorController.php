@@ -131,7 +131,7 @@ class AuthorController extends Controller
         ], 200);
     }
 
-    public function delete(string $id) {
+    public function destroy(string $id) {
         $author = Author::find($id);
 
         if (!$author) {
@@ -142,9 +142,7 @@ class AuthorController extends Controller
         }
 
         // Delete photo file from storage
-        if ($author->photo) {
-            Storage::disk('public')->delete('authors/' . $author->photo);
-        }
+        if ($author->photo) Storage::disk('public')->delete('authors/' . $author->photo);
 
         $author->delete();
 

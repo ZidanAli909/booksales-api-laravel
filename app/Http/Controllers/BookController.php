@@ -158,9 +158,7 @@ class BookController extends Controller
         }
 
         // Delete cover_photo file from storage
-        if ($book->cover_photo) {
-            Storage::disk('public')->delete('books/' . $book->cover_photo);
-        }
+        if ($book->cover_photo) Storage::disk('public')->delete('books/' . $book->cover_photo);
 
         $book->delete();
 

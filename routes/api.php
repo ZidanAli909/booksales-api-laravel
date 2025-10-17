@@ -10,20 +10,8 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
-// Route::get('/books', [BookController::class, 'index']);
-// Route::get('/books/{id}', [BookController::class, 'show']);
-// Route::post('/books', [BookController::class, 'store']);
-// Route::post('/books/{id}', [BookController::class, 'update']); // Tidak bisa PUT, why?
-// Route::delete('/books/{id}', [BookController::class, 'destroy']);
-
 Route::apiResource('books', BookController::class);
-
-// Route::get('/authors', [AuthorController::class, 'index']);
-// Route::post('/authors', [AuthorController::class, 'store']);
-
 Route::apiResource('authors', AuthorController::class);
-
-// Route::get('/genres', [GenreController::class, 'index']);
-// Route::post('/genres', [GenreController::class, 'store']);
-
 Route::apiResource('genres', GenreController::class);
+
+//NOTE: Use "_method => PUT" for "update" requests in Postman!

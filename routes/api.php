@@ -12,23 +12,34 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:sanctum');
 
+// Authentication Routes
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:api');
 
+// Public Routes
 Route::apiResource('/books', BookController::class)->only(['index', 'show']);
 Route::apiResource('/authors', AuthorController::class)->only(['index', 'show']);
 Route::apiResource('/genres', GenreController::class)->only(['index', 'show']);
 
+// [WARNING]: For testing purposes!
+// Route::apiResource('/transactions', TransactionController::class)->only(['show', 'store']);
+// Route::apiResource('/books', BookController::class)->only(['store', 'update', 'destroy']); 
+// Route::apiResource('/authors', AuthorController::class)->only(['store', 'update', 'destroy']);
+// Route::apiResource('/genres', GenreController::class)->only(['store', 'update', 'destroy']);
+// Route::apiResource('/transactions', TransactionController::class)->only(['index', 'update', 'destroy']);
+
+// Authed-Only Routes
 Route::middleware(['auth:api'])->group(function () {
     Route::apiResource('/transactions', TransactionController::class)->only(['show', 'store']);
-    // Only for role: admin
-    Route::middleware(['role:admin'])->group(function () {
-        Route::apiResource('/books', BookController::class)->only(['store', 'update', 'destroy']); 
-        Route::apiResource('/authors', AuthorController::class)->only(['store', 'update', 'destroy']);
-        Route::apiResource('/genres', GenreController::class)->only(['store', 'update', 'destroy']);
-        Route::apiResource('/transactions', TransactionController::class)->only(['index', 'update', 'destroy']);
-    });
+});
+
+// Admin-Only Routes
+Route::middleware(['auth:api', 'role:admin'])->group(function () {
+    Route::apiResource('/books', BookController::class)->only(['store', 'update', 'destroy']); 
+    Route::apiResource('/authors', AuthorController::class)->only(['store', 'update', 'destroy']);
+    Route::apiResource('/genres', GenreController::class)->only(['store', 'update', 'destroy']);
+    Route::apiResource('/transactions', TransactionController::class)->only(['index', 'update', 'destroy']);
 });
 
 //NOTE: Use "_method => PUT" for "update" requests in Postman!
